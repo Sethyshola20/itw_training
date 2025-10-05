@@ -1,7 +1,7 @@
 <template>
   <nav class="w-72 bg-black sticky h-[100vh] text-white flex flex-col shadow-lg">
       <div class="p-8 border-b border-white/10">
-        <h2 class="text-xl font-bold mb-2">Scaleway</h2>
+        <h2 class="text-xl font-bold mb-2">Acme</h2>
         <p class="text-sm opacity-80">Welcome, {{ user?.name || 'User' }}</p>
       </div>
       <ul class="flex-1 py-5 bg-black">

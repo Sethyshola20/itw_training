@@ -18,7 +18,7 @@ RUN go mod download
 COPY . .
 
 # Expose the billing service port
-EXPOSE 8002
+EXPOSE 8090
 
 # Run Air (auto reload on file change)
 CMD ["air", "-c", ".air.toml"]
