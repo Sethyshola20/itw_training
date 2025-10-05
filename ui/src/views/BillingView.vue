@@ -6,7 +6,6 @@
     </div>
 
     <div class="flex flex-col space-y-8">
-      <!-- Quick Stats -->
       <div>
         <h2 class="text-xl font-semibold text-gray-800 mb-5">Overview</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -52,7 +51,6 @@
         </div>
       </div>
 
-      <!-- Recent Activity -->
       <div>
         <h2 class="text-xl font-semibold text-gray-800 mb-5">Recent Activity</h2>
         <div class="bg-white rounded-xl p-6 shadow-sm">
@@ -72,8 +70,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Quick Actions -->
       <div>
         <h2 class="text-xl font-semibold text-gray-800 mb-5">Quick Actions</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -176,7 +172,6 @@ const refreshData = async () => {
 }
 
 const exportData = () => {
-  // Mock export functionality
   const data = {
     subscriptions: billingStore.subscriptions,
     invoices: billingStore.invoices,

@@ -16,6 +16,7 @@ export const useBillingStore = defineStore('billing', () => {
     
     try {
       subscriptions.value = await apiService.getSubscriptions()
+      console.log("subs",subscriptions )
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Failed to fetch subscriptions'
       throw err

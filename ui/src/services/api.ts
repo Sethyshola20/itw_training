@@ -57,9 +57,9 @@ class ApiService {
       ...options,
       credentials:'include'
     }
-
+    if(`${this.baseURL}${endpoint}` === "http://localhost:8080/api/billing/subscriptions")
+    {console.log(await fetch(`${this.baseURL}${endpoint}`, config))}
     const response = await fetch(`${this.baseURL}${endpoint}`, config)
-    
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
@@ -67,7 +67,6 @@ class ApiService {
     return response.json()
   }
 
-  // Auth endpoints
   async login(credentials: LoginRequest): Promise<AuthResponse> {
     return this.request<AuthResponse>('/api/token/', {
       method: 'POST',
@@ -90,7 +89,6 @@ class ApiService {
     })
   }
 
-  // User endpoints
   async getCurrentUser(): Promise<User> {
     return this.request<User>('/api/users/me/')
   }
@@ -99,7 +97,6 @@ class ApiService {
     return this.request<User[]>('/api/users/')
   }
 
-  // Subscription endpoints
   async getSubscriptions(): Promise<Subscription[]> {
     return this.request<Subscription[]>('/api/billing/subscriptions')
   }
@@ -117,7 +114,6 @@ class ApiService {
     })
   }
 
-  // Invoice endpoints
   async getInvoices(): Promise<Invoice[]> {
     return this.request<Invoice[]>('/api/billing/invoices')
   }
