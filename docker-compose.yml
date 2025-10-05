@@ -1,0 +1,53 @@
+services:
+
+  auth:
+    build:
+      context: ./auth_service
+    volumes:
+      - ./auth_service:/app
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+  billing:
+    build:
+      context: ./billing_service
+    volumes:
+      - ./billing_service:/app
+    command: air
+    ports:
+      - "8090:8090"  # Adjust if billing service exposes an HTTP port
+
+  gateway:
+    build:
+      context: ./api_gateway
+    ports:
+      - "8080:8080"   
+    volumes:
+      - ./api_gateway:/app
+    command: air
+    environment:
+      - AUTH_URL=http://auth:8000
+      - BILLING_URL=http://billing:8090
+      - UI_URL=http://localhost:3000
+    depends_on:
+      - auth
+      - billing
+
+  payment:
+    build:
+      context: ./payment_service
+    volumes:
+      - ./payment_service:/app
+    command: python server.py
+    ports:
+      - "50051:50051"
+
+  ui:
+    build:
+      context: ./ui
+    command: npm run dev
+    volumes:
+      - ./ui:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"

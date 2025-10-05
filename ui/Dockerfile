@@ -1,0 +1,11 @@
+# Dev Dockerfile for Vue UI
+FROM node:20-bullseye  
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+CMD ["npm", "run", "dev"]

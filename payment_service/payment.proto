@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package payments;
+
+service PaymentService {
+  rpc RecordPayment (PaymentRequest) returns (PaymentResponse);
+  rpc ValidatePayment (ValidateRequest) returns (ValidateResponse);
+}
+
+message PaymentRequest {
+  string user_id = 1;
+  string subscription_id = 2;
+  double amount = 3;
+  string currency = 4;
+  string method = 5;
+}
+
+message PaymentResponse {
+  string payment_id = 1;
+  string status = 2; // pending|success|failed
+}
+
+message ValidateRequest {
+  string payment_id = 1;
+}
+
+message ValidateResponse {
+  string payment_id = 1;
+  string status = 2;
+}
