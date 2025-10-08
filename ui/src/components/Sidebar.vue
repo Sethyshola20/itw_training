@@ -1,5 +1,6 @@
 <template>
-  <nav class="w-72 bg-black sticky h-[100vh] text-white flex flex-col shadow-lg">
+  <nav class="min-w-72 bg-black sticky text-white flex flex-col shadow-lg">
+    <div class="fixed container w-72">
       <div class="p-8 border-b border-white/10">
         <h2 class="text-xl font-bold mb-2">Acme</h2>
         <p class="text-sm opacity-80">Welcome, {{ user?.name || 'User' }}</p>
@@ -37,13 +38,18 @@
         </li>
       </ul>
       <div class="p-5 border-t border-white/10">
-        <button @click="handleLogout" class="flex items-center w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white cursor-pointer transition-colors hover:bg-white/20">
+        <button class="flex items-center w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white cursor-pointer transition-colors hover:bg-white/20">
           <span class="mr-3 text-lg">🚪</span>
           Logout
         </button>
       </div>
-    </nav>
+    </div>  
+  </nav>
 </template>
-<script>
+<script setup lang="ts">
+import { useAuthStore } from '@/stores/auth'
 
+const authStore = useAuthStore()
+const user = await authStore.fetchCurrentUser()
 </script>
+

@@ -96,16 +96,19 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useBillingStore } from '@/stores/billing'
+import { useAuthStore } from '@/stores/auth'
 
 const billingStore = useBillingStore()
-
+const authStore = useAuthStore()
+const user = await authStore.fetchCurrentUser()
 const showCreateModal = ref(false)
 const isLoading = computed(() => billingStore.isLoading)
 const error = computed(() => billingStore.error)
 const subscriptions = computed(() => billingStore.subscriptions)
 
+console.log(user, 'user')
 const newSubscription = ref({
-  user_id: '',
+  user_id: user?.id,
   plan: ''
 })
 

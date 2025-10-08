@@ -26,7 +26,6 @@ type Invoicerepository struct {
 	db *sql.DB
 }
 
-// Constructor
 func NewInvoiceRepository(db *sql.DB) InvoiceRepository {
 	return &Invoicerepository{db: db}
 }
